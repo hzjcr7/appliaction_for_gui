@@ -33,7 +33,7 @@ class ReminderApp(customtkinter.CTk):
         current_path = os.path.dirname(os.path.realpath(__file__))
         image_path = os.path.join(current_path, "background.jpg")
         self.image = Image.open(image_path)
-        self.image = self.image.resize((400, 300), Image.ANTIALIAS)  # Resize image to fit
+        self.image = self.image.resize((400, 300), Image.ANTIALIAS)  
         self.photo = ImageTk.PhotoImage(self.image)
         self.image_label = customtkinter.CTkLabel(self.login_frame, image=self.photo,text="")
         self.image_label.grid(row=0, column=1, rowspan=4, padx=30, pady=(150, 15))
@@ -76,7 +76,7 @@ class ReminderApp(customtkinter.CTk):
         self.settings_frame.grid(row=1, column=1, columnspan=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
         self.settings_frame.grid_columnconfigure(0, weight=1)
         self.settings_frame.grid_rowconfigure(0, weight=1)
-        self.settings_frame.grid_remove()  # Hide initially
+        self.settings_frame.grid_remove()  
 
         self.appearance_mode_label = customtkinter.CTkLabel(self.settings_frame, text="Appearance Mode:", anchor="w")
         self.appearance_mode_label.grid(row=0, column=0, padx=20, pady=(10, 0))
@@ -92,7 +92,7 @@ class ReminderApp(customtkinter.CTk):
     def login_event(self):
         print("Login pressed - username:", self.username_entry.get(), "password:", self.password_entry.get())
         self.login_frame.grid_forget()  # remove login frame
-        self.main_frame.grid(row=0, column=0, sticky="nsew")  # show main frame
+        self.main_frame.grid(row=0, column=0, sticky="nsew")  
 
     def countdown(self, count):
         minutes, seconds = divmod(count, 60)
@@ -107,14 +107,13 @@ class ReminderApp(customtkinter.CTk):
         winsound.Beep(2500, 1000)  # Play a beep sound
         self.deiconify()
         messagebox.showinfo("Break Time!", "Take a 20-second break!")
-        self.iconify()  # Hide the window again
-
+        self.iconify()  
     def restart(self):
         print("Countdown restarted.")
         self.countdown(1200)  # Restart the countdown
 
     def open_settings(self):
-        self.settings_frame.grid()    # Show the settings frame
+        self.settings_frame.grid()    
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
